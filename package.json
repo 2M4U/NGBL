@@ -1,0 +1,34 @@
+{
+    "name": "ngbl",
+    "version": "1.0.0",
+    "description": "Official API Module for NextGenBots.xyz",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "Discord",
+        "Bot",
+        "List",
+        "NGBL",
+        "API",
+        "Module"
+    ],
+    "author": "CyberCDN",
+    "license": "MIT",
+    "dependencies": {
+        "wumpfetch": "^0.3.1"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CyberCDN/NGBL.git"
+    },
+    "bugs": {
+        "url": "https://github.com/CyberCDN/NGBL/issues"
+    },
+    "homepage": "https://github.com/CyberCDN/NGBL#readme"
+}
