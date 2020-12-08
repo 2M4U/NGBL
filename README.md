@@ -1,6 +1,6 @@
 [![npm installinfo](https://nodei.co/npm/ngbl.png?downloads=true&stars=true)](https://www.npmjs.com/package/ngbl)<br>
-[![npm version](https://img.shields.io/npm/v/ngbl.svg?maxAge=3600)](https://www.npmjs.com/package/ngbl)
-[![npm downloads](https://img.shields.io/npm/dt/ngbl.svg?maxAge=3600)](https://www.npmjs.com/package/ngbl)
+[![npm version](https://img.shields.io/npm/v/ngbl.svg)](https://www.npmjs.com/package/ngbl)
+[![npm downloads](https://img.shields.io/npm/dt/ngbl.svg)](https://www.npmjs.com/package/ngbl)
 
 
 The Official API Module For **NextGenBots.xyz** in JavaScript.
@@ -16,9 +16,9 @@ Using **yarn**
 <hr>
 
 #### Methods
-- .manualPost()
-- .autoPost()
-- .botInfo() - In Development
+- `.manualPost()`
+- `.autoPost()`
+- `.botInfo()`
 - *More coming soon*
 <hr>
 
@@ -30,18 +30,39 @@ const NGB = require('ngbl');
 const api = new NGB('BOT_ID','API_KEY');
 ```
 
--  .manualPost()
+-  `.manualPost()`
 
 ```js
 api.manualPost('SERVER_COUNT').then(console.log);
 ```
 
--  .autoPost()
+-  `.autoPost()`
 
 *Time is OPTIONAL, it will default to 1 hour*
 
+*Response is OPTIONAL, it will default to FALSE*
+
 ```js
-api.autoPost('SERVER_COUNT','TIME_IN_MS').then(console.log);
+api.autoPost('SERVER_COUNT','TIME_IN_MS', 'RESPONSE').then(console.log);
+```
+
+-  `.botInfo()`
+
+```js
+api.botInfo('BOT_ID').then(console.log);
+```
+
+#### Botinfo Example
+
+
+```js
+const NGB = require('ngbl');
+module.exports.run = async (client, message, args) => {
+    const api = new NGB(client.user.id, "EXAMPLE");
+    let res = api.botInfo(args[0]);
+    console.log(res)
+    message.channel.send(res);
+};
 ```
 
 #### Auto Post Example
@@ -50,11 +71,13 @@ api.autoPost('SERVER_COUNT','TIME_IN_MS').then(console.log);
 
 *Time is OPTIONAL, it will default to 1 hour*
 
+*Response is OPTIONAL, it will default to FALSE*
+
 ```js
 const NGB = require('ngbl');
 module.exports = (client) => {
     const api = new NGB(client.user.id, "EXAMPLE");
-    api.autoPost(client.guilds.cache.size, 3.6e+6).then((r) => {
+    api.autoPost(client.guilds.cache.size, 3.6e+6, true).then((r) => {
         console.log(r);
     }).catch((err) => {
         console.log(err);
@@ -66,7 +89,7 @@ module.exports = (client) => {
 const NGB = require('ngbl');
 module.exports = async (client) => {
     const api = new NGB(client.user.id, "EXAMPLE");
-    let res = await api.autoPost(client.guilds.cache.size);
+    let res = await api.autoPost(client.guilds.cache.size, 3.6e+6, true);
     console.log(res);
 };
 ```
