@@ -31,12 +31,15 @@ const api = new NGB('BOT_ID','API_KEY');
 ```
 
 -  .manualPost()
+
 ```js
 api.manualPost('SERVER_COUNT').then(console.log);
 ```
 
 -  .autoPost()
+
 *Time is OPTIONAL, it will default to 1 hour*
+
 ```js
 api.autoPost('SERVER_COUNT','TIME_IN_MS').then(console.log);
 ```
@@ -44,6 +47,7 @@ api.autoPost('SERVER_COUNT','TIME_IN_MS').then(console.log);
 #### Auto Post Example
 
 *This will post ever HOUR (3.6e+6 = 1hour in milliseconds)*
+
 *Time is OPTIONAL, it will default to 1 hour*
 
 ```js
