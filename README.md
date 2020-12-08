@@ -16,8 +16,9 @@ Using **yarn**
 <hr>
 
 #### Methods
-- .updateStats()
-- .botInfo()
+- .manualPost()
+- .autoPost()
+- .botInfo() - In Development
 - *More coming soon*
 <hr>
 
@@ -29,18 +30,27 @@ const NGB = require('ngbl');
 const api = new NGB('BOT_ID','API_KEY');
 ```
 
--  .updateStats()
+-  .manualPost()
 ```js
-api.updateStats('SERVER_COUNT').then(console.log);
+api.manualPost('SERVER_COUNT').then(console.log);
 ```
 
-#### Basic Example
+-  .autoPost()
+*Time is OPTIONAL, it will default to 1 hour*
+```js
+api.autoPost('SERVER_COUNT','TIME_IN_MS').then(console.log);
+```
+
+#### Auto Post Example
+
+*This will post ever HOUR (3.6e+6 = 1hour in milliseconds)*
+*Time is OPTIONAL, it will default to 1 hour*
 
 ```js
 const NGB = require('ngbl');
 module.exports = (client) => {
     const api = new NGB(client.user.id, "EXAMPLE");
-    api.updateStats(client.guilds.cache.size).then((r) => {
+    api.autoPost(client.guilds.cache.size, 3.6e+6).then((r) => {
         console.log(r);
     }).catch((err) => {
         console.log(err);
@@ -48,13 +58,34 @@ module.exports = (client) => {
 };
 ```
 
-**__OR__**
+```js
+const NGB = require('ngbl');
+module.exports = async (client) => {
+    const api = new NGB(client.user.id, "EXAMPLE");
+    let res = await api.autoPost(client.guilds.cache.size);
+    console.log(res);
+};
+```
+
+#### Manual Post Example
+
+```js
+const NGB = require('ngbl');
+module.exports = (client) => {
+    const api = new NGB(client.user.id, "EXAMPLE");
+    api.manualPost(client.guilds.cache.size).then((r) => {
+        console.log(r);
+    }).catch((err) => {
+        console.log(err);
+    });
+};
+```
 
 ```js
 const NGB = require('ngbl');
 module.exports = async (client) => {
     const api = new NGB(client.user.id, "EXAMPLE");
-    let res = await api.updateStats(client.guilds.cache.size);
+    let res = await api.manualPost(client.guilds.cache.size);
     console.log(res);
 };
 ```
